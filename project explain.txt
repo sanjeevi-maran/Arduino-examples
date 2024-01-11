@@ -1,0 +1,32 @@
+xTaskCreatePinnedToCore(task1, "Task 1", 128, NULL, 1, NULL, 0);
+
+
+BaseType_t xTaskCreatePinnedToCore( TaskFunction_t pvTaskCode,
+                                        const char * const pcName,
+                                        const uint32_t usStackDepth,
+                                        void * const pvParameters,
+                                        UBaseType_t uxPriority,
+                                        TaskHandle_t * const pvCreatedTask,
+                                        const BaseType_t xCoreID);
+
+
+
+task1   (TaskFunction_t pvTaskCode)     - This is a pointer to the function that implements the task. The function must have the following signature: void function(void *pvParameters). The pvParameters argument is a pointer to a data structure that can be used to pass parameters to the task.
+"Task1" ( const char * const pcName)    - This is a string that provides a human-readable name for the task. The name is used for debugging and profiling purposes.
+128     (const uint32_t usStackDepth)   - This is the size of the task stack in bytes. The stack is used to store the task context, local variables, and function call stack. The stack size should be chosen carefully to avoid stack overflows.
+NULL    (void * const pvParameters)             - This is a pointer to a data structure that can be used to pass parameters to the task. If the task does not require any parameters, you can set this to NULL.
+1       (UBaseType_t uxPriority)                - This is the priority of the task. Tasks with higher priorities will be scheduled before tasks with lower priorities.
+NULL    ( TaskHandle_t * const pvCreatedTask)   - This is a pointer to a variable that will receive a handle to the created task. If you do not need to use the handle, you can set this to NULL.
+0       ( const BaseType_t xCoreID)            - This is the ID of the core to which the task should be pinned. The ID should be a valid core number for the system. For example, if you have a dual-core system, you can set this to 0 or 1 to assign the task to core 0 or core 1, respectively.
+
+
+
+pvTaskCode    : The task function is task1.
+pcName        : The task name is "Task 1".
+usStackDepth  : The task stack size is 128 bytes.
+pvParameters  : The task does not require any parameters, so this is set to NULL.
+uxPriority    : The task priority is 1.
+pxCreatedTask : The task handle is not needed, so this is set to NULL.
+xCoreID       : The task is pinned to core 0.
+
+
